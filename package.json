@@ -1,0 +1,34 @@
+{
+  "name": "sdb-discord",
+  "description": "DiscordJS bot made for @shinchandelbarrio's official Discord server.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "rm -rf ./dist && tsc && node deploy-commands.js && node ./dist/index.js",
+    "dev": "nodemon ./src/index.ts",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M4RC0Sx/SDB-Discord.git"
+  },
+  "author": "M4RC0Sx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M4RC0Sx/SDB-Discord/issues"
+  },
+  "homepage": "https://github.com/M4RC0Sx/SDB-Discord#readme",
+  "dependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "discord-api-types": "^0.31.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.23",
+    "eslint": "^8.13.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
