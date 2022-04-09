@@ -5,18 +5,16 @@
 
 import { Client, Interaction } from "discord.js";
 
-const { log } = require('../util/utils');
-const buttonEvent = (event: string) => require(`../events/interactions/buttons/${event}`);
+import { log } from "../util/utils";
+const buttonEvent = (event: string) =>
+  require(`../events/interactions/buttons/${event}`);
 
+export function loadEvents(client: Client) {
+  log("Loading events...");
 
-function loadEvents(client: Client) {
-    log('Loading events...')
-
-    // Button events
-    console.log('\t-> Loading button events...')
-    client.on('interactionCreate', (i: Interaction) => buttonEvent('classJoin')(client, i));
+  // Button events
+  console.log("\t-> Loading button events...");
+  client.on("interactionCreate", (i: Interaction) =>
+    buttonEvent("classJoin")(client, i)
+  );
 }
-
-module.exports = {
-    loadEvents,
-};
