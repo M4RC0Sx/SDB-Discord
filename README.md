@@ -2,7 +2,7 @@
 
 DiscordJS bot made for @shinchandelbarrio's official Discord server.
 
-### Installation:
+### Usage & Installation (Docker):
 
 1. Install Docker on your host machine.
 2. Get latest image from Docker Hub:
