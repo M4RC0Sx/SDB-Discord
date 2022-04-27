@@ -12,8 +12,8 @@ import "dotenv/config";
 
 import { loadEvents } from "./handlers/loadEvents";
 
-import { log, logBotCredits } from "./util/utils";
-import { TOKEN, ACTIVITY } from "./util/config";
+import { log } from "./util/utils";
+import { TOKEN } from "./util/config";
 import * as BOT_SETTINGS from "./util/config";
 
 import { SDBClient } from "./SDBClient";
@@ -40,10 +40,13 @@ intents.add(
 );
 
 // Setup client
-const client = new SDBClient({
-  restTimeOffset: 0,
-  intents: intents
-});
+const client = new SDBClient(
+  {
+    restTimeOffset: 0,
+    intents: intents
+  },
+  BOT_SETTINGS.GUILD_ID
+);
 
 // Load events
 loadEvents(client);
@@ -62,20 +65,8 @@ for (const f of cmdFiles) {
   client.commands.set(cmd.data.name, cmd);
 }
 
-// Client login an ready event
+// Client login
 client.login(TOKEN);
-client.once("ready", () => {
-  log("Client is ready! Setting activity...");
-
-  if (client.user) {
-    client.user.setActivity(ACTIVITY, { type: "PLAYING" });
-
-    log("Bot params:");
-    console.log(`\t-> Username: ${client.user.username}`);
-  }
-
-  logBotCredits();
-});
 
 // Slash command interaction handler
 client.on("interactionCreate", async (interaction: Interaction) => {

@@ -41,3 +41,7 @@ export const ROLE_CHERRY_ID = config
 export const ROLE_ADMIN_ID = config
   ? config.ROLE_ADMIN_ID
   : process.env.ROLE_ADMIN_ID;
+
+export const CHANNEL_USER_COUNTER_ID = config
+  ? config.CHANNEL_USER_COUNTER_ID
+  : process.env.CHANNEL_USER_COUNTER_ID;
