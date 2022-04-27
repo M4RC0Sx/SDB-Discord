@@ -6,11 +6,17 @@
 import { Client, Interaction } from "discord.js";
 
 import { log } from "../util/utils";
+
 const buttonEvent = (event: string) =>
   require(`../events/interactions/buttons/${event}`);
+const clientEvent = (event: string) => require(`../events/client/${event}`);
 
 export function loadEvents(client: Client) {
   log("Loading events...");
+
+  // Client events
+  console.log("\t-> Loading client events...");
+  client.once("ready", () => clientEvent("ready")(client));
 
   // Button events
   console.log("\t-> Loading button events...");
