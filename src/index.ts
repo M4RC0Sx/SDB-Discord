@@ -40,10 +40,13 @@ intents.add(
 );
 
 // Setup client
-const client = new SDBClient({
-  restTimeOffset: 0,
-  intents: intents
-});
+const client = new SDBClient(
+  {
+    restTimeOffset: 0,
+    intents: intents
+  },
+  BOT_SETTINGS.GUILD_ID
+);
 
 // Load events
 loadEvents(client);
