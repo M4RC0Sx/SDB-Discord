@@ -5,7 +5,10 @@ import { SDBClient } from "../../SDBClient";
 module.exports = (client: SDBClient) => {
   if (client.user) {
     log("Client is ready! Setting activity...");
-    client.user?.setActivity(ACTIVITY, { type: "PLAYING" });
+    client.user?.setActivity(
+      `${ACTIVITY} - v${process.env.npm_package_version}`,
+      { type: "PLAYING" }
+    );
 
     log("Bot params:");
     console.log(`\t-> Username: ${client.user?.username}`);
