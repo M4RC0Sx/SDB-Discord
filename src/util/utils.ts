@@ -6,7 +6,7 @@
 import { GuildMember } from "discord.js";
 
 import {
-  CONSOLE_PREFIX,
+  PREFIX,
   ROLE_ADMIN_ID,
   ROLE_ROSE_ID,
   ROLE_SUNFLOWER_ID,
@@ -14,7 +14,7 @@ import {
 } from "./config";
 
 export const log = (msg: string) => {
-  console.log(`${CONSOLE_PREFIX} ${msg}`);
+  console.log(`${PREFIX} ${msg}`);
 };
 
 export const logBotCredits = () => {
@@ -38,4 +38,13 @@ export const isInClass = (user: GuildMember) => {
     user.roles.cache.has(ROLE_SUNFLOWER_ID) ||
     user.roles.cache.has(ROLE_CHERRY_ID)
   );
+};
+
+export const getUpperPercentage = (msg: string) => {
+  const upperPercentage = msg.replace(/[^A-Z]/g, "").length / msg.length;
+  return upperPercentage;
+};
+
+export const stdMsg = (raw_msg: string) => {
+  return `**${PREFIX} >>** ${raw_msg}`;
 };
