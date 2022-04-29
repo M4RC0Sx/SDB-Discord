@@ -14,9 +14,7 @@ try {
 }
 
 export const TOKEN = config ? config.TOKEN : process.env.TOKEN;
-export const CONSOLE_PREFIX = config
-  ? config.CONSOLE_PREFIX
-  : process.env.CONSOLE_PREFIX;
+export const PREFIX = config ? config.PREFIX : process.env.PREFIX;
 export const ACTIVITY = config ? config.ACTIVITY : process.env.ACTIVITY;
 export const GUILD_ID = config ? config.GUILD_ID : process.env.GUILD_ID;
 export const CLIENT_ID = config ? config.CLIENT_ID : process.env.CLIENT_ID;
@@ -45,3 +43,6 @@ export const ROLE_ADMIN_ID = config
 export const CHANNEL_USER_COUNTER_ID = config
   ? config.CHANNEL_USER_COUNTER_ID
   : process.env.CHANNEL_USER_COUNTER_ID;
+export const CHANNEL_STAFF_LOG_ID = config
+  ? config.CHANNEL_STAFF_LOG_ID
+  : process.env.CHANNEL_STAFF_LOG_ID;
