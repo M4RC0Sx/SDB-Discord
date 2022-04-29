@@ -67,7 +67,10 @@ export = {
               .setDescription(
                 `**¡Bienvenido al servidor oficial de ${INSTAGRAM_USER}!**\n\n ¡Haz click al botón para que se te asigne tu clase de forma aleatoria! \n*(Una vez asignada, no podrás cambiarte)*`
               )
-              .setFooter(INSTAGRAM_USER, bot.avatarURL() || undefined)
+              .setFooter({
+                text: INSTAGRAM_USER,
+                iconURL: bot.avatarURL() || undefined
+              })
               .setTimestamp()
           ],
           components: [row]
