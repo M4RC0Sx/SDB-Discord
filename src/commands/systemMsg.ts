@@ -59,11 +59,11 @@ export = {
           embeds: [
             new MessageEmbed()
               .setColor(MAIN_COLOR)
-              .setAuthor(
-                "SHINCHAN BOT - Clases",
-                bot.avatarURL() || undefined,
-                TIKTOK_URL
-              )
+              .setAuthor({
+                name: "SHINCHAN BOT - Clases",
+                iconURL: bot.avatarURL() || undefined,
+                url: TIKTOK_URL
+              })
               .setDescription(
                 `**¡Bienvenido al servidor oficial de ${INSTAGRAM_USER}!**\n\n ¡Haz click al botón para que se te asigne tu clase de forma aleatoria! \n*(Una vez asignada, no podrás cambiarte)*`
               )
