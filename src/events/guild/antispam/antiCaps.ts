@@ -1,11 +1,13 @@
 import { Message, MessageEmbed } from "discord.js";
 import { SDBClient } from "../../../SDBClient";
 import { MAIN_COLOR } from "../../../util/config";
-import { getUpperPercentage } from "../../../util/utils";
+import { getUpperPercentage, isAdmin } from "../../../util/utils";
 
 module.exports = async (client: SDBClient, message: Message) => {
   if (message.channel.type != "GUILD_TEXT") return; // Only Guild channels
   if (message.author.bot) return; // Ignore bots
+
+  if (message.member && isAdmin(message.member)) return; // Ignore admins
 
   const msgContent = message.content;
   if (getUpperPercentage(msgContent) >= 0.6) {

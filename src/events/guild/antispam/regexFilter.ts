@@ -1,6 +1,7 @@
 import { Message, MessageEmbed } from "discord.js";
 import { SDBClient } from "../../../SDBClient";
 import { MAIN_COLOR } from "../../../util/config";
+import { isAdmin } from "../../../util/utils";
 
 const filters = [
   /(?:p|P)+(?:u|U)+(?:t|T)+(?:a|A|o|O|0|4)+/,
@@ -11,6 +12,8 @@ const filters = [
 module.exports = async (client: SDBClient, message: Message) => {
   if (message.channel.type != "GUILD_TEXT") return; // Only Guild channels
   if (message.author.bot) return; // Ignore bots
+
+  if (message.member && isAdmin(message.member)) return; // Ignore admins
 
   const msgContent = message.content;
   for (const i in filters) {
