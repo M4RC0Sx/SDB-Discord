@@ -3,9 +3,9 @@ import { SDBClient } from "../../../SDBClient";
 import { MAIN_COLOR } from "../../../util/config";
 
 const filters = [
-  "(?:p|P)+(?:u|U)+(?:t|T)+(?:a|A|o|O|0|4)+",
-  "(?:n|N)+(?:a|A|4)+(?:z|Z)+(?:i|I|1|l|!|¡)+",
-  "(?:p|P)+(?:o|O|0)+(?:l|L|1)+(?:a|A|4)+"
+  /(?:p|P)+(?:u|U)+(?:t|T)+(?:a|A|o|O|0|4)+/,
+  /(?:n|N)+(?:a|A|4)+(?:z|Z)+(?:i|I|1|l|!|¡)+/,
+  /(?:p|P)+(?:o|O|0)+(?:l|L|1)+(?:a|A|4)+/
 ];
 
 module.exports = async (client: SDBClient, message: Message) => {
