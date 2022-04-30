@@ -1,3 +1,8 @@
+/**
+ * SDB-Discord (@shinchandelbarrio's official Discord Bot)
+ * @author M4RC0Sx <https://github.com/M4RC0Sx/SDB-Discord>
+ */
+
 import { Message, MessageEmbed } from "discord.js";
 import { SDBClient } from "../../../SDBClient";
 import { MAIN_COLOR } from "../../../util/config";

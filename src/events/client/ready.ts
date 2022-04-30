@@ -1,3 +1,8 @@
+/**
+ * SDB-Discord (@shinchandelbarrio's official Discord Bot)
+ * @author M4RC0Sx <https://github.com/M4RC0Sx/SDB-Discord>
+ */
+
 import { log, logBotCredits } from "../../util/utils";
 import { ACTIVITY } from "../../util/config";
 import { SDBClient } from "../../SDBClient";
