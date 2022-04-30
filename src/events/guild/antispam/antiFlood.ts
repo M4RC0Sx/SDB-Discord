@@ -7,7 +7,7 @@ module.exports = async (client: SDBClient, message: Message) => {
   if (message.author.bot) return; // Ignore bots
 
   if (
-    client.getAntiFloodTimeDiffSeconds(message.author.id) < 3 &&
+    client.getAntiFloodTimeDiffSeconds(message.author.id) < 1 &&
     client.getAntiFloodTimeDiffSeconds(message.author.id) > 0
   ) {
     message.reply(

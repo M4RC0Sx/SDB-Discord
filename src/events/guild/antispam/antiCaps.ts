@@ -9,6 +9,8 @@ module.exports = async (client: SDBClient, message: Message) => {
 
   const msgContent = message.content;
   if (getUpperPercentage(msgContent) >= 0.6) {
+    if (msgContent.length <= 25) return; // Ignore short messages
+
     message.reply(
       "**Por favor, no uses tantas mayúsculas en el chat.** *Eliminando mensaje...*"
     );
