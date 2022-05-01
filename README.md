@@ -15,5 +15,5 @@ docker pull m4rc0sx/sdb-discord:latest
 4. Run a container with the pulled image and using the .env file you just created:
 
 ```sh
-docker run -d --restart unless-stopped --env-file .env m4rc0sx/sdb-discord:latest
+docker run -d --restart unless-stopped -v /path/SDBBot/database/:/usr/src/SDB-Discord/database --env-file .env m4rc0sx/sdb-discord:latest
 ```
