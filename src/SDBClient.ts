@@ -10,17 +10,28 @@ import {
   MessageEmbed,
   TextChannel
 } from "discord.js";
+import { Class } from "./handlers/dbModels";
 import {
+  CHANNEL_CHERRY_COUNTER_ID,
+  CHANNEL_ROSE_COUNTER_ID,
   CHANNEL_STAFF_LOG_ID,
+  CHANNEL_SUNFLOWER_COUNTER_ID,
   CHANNEL_USER_COUNTER_ID,
   ROLE_ADMIN_ID
 } from "./util/config";
 
 class SDBClient extends Client {
+  getSocialGuild() {
+    throw new Error("Method not implemented.");
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   commands: Collection<any, any>;
   guildId: string;
   counterRecentlyUpdated: boolean;
+
+  cherryCounterRecentlyUpdated: boolean;
+  sunflowerCounterRecentlyUpdated: boolean;
+  roseCounterRecentlyUpdated: boolean;
 
   // AntiSpam
   antiFloodTimes: Collection<string, number>;
@@ -30,6 +41,10 @@ class SDBClient extends Client {
     this.guildId = guildId;
     this.commands = new Collection();
     this.counterRecentlyUpdated = false;
+
+    this.cherryCounterRecentlyUpdated = false;
+    this.sunflowerCounterRecentlyUpdated = false;
+    this.roseCounterRecentlyUpdated = false;
 
     this.antiFloodTimes = new Collection();
   }
@@ -83,6 +98,78 @@ class SDBClient extends Client {
 
     const diff = Date.now() - lastTime;
     return Math.floor(diff / 1000);
+  }
+
+  async updateCherryPointsCounter() {
+    if (this.cherryCounterRecentlyUpdated) return;
+
+    const classModel = await Class.findOne({
+      where: { name: "CEREZAS" }
+    });
+    if (!classModel) return;
+
+    const ch = this.getGuild().channels.cache.get(CHANNEL_CHERRY_COUNTER_ID);
+    if (ch) {
+      ch.setName(`${ch.name.split(":")[0]}: ${classModel.getPoints()}`)
+        .then((newCh) => {
+          console.log(`\tUpdated user counter success! (${newCh.name})`);
+          this.cherryCounterRecentlyUpdated = true;
+          setTimeout(() => {
+            this.cherryCounterRecentlyUpdated = false;
+          }, 5 * 60 * 1000);
+        })
+        .catch((err) => console.log(`\tError updating user counter: ${err}`));
+    }
+  }
+
+  async updateSunflowerPointsCounter() {
+    if (this.sunflowerCounterRecentlyUpdated) return;
+
+    const classModel = await Class.findOne({
+      where: { name: "GIRASOLES" }
+    });
+    if (!classModel) return;
+
+    const ch = this.getGuild().channels.cache.get(CHANNEL_SUNFLOWER_COUNTER_ID);
+    if (ch) {
+      ch.setName(`${ch.name.split(":")[0]}: ${classModel.getPoints()}`)
+        .then((newCh) => {
+          console.log(`\tUpdated user counter success! (${newCh.name})`);
+          this.sunflowerCounterRecentlyUpdated = true;
+          setTimeout(() => {
+            this.sunflowerCounterRecentlyUpdated = false;
+          }, 5 * 60 * 1000);
+        })
+        .catch((err) => console.log(`\tError updating user counter: ${err}`));
+    }
+  }
+
+  async updateRosePointsCounter() {
+    if (this.roseCounterRecentlyUpdated) return;
+
+    const classModel = await Class.findOne({
+      where: { name: "ROSAS" }
+    });
+    if (!classModel) return;
+
+    const ch = this.getGuild().channels.cache.get(CHANNEL_ROSE_COUNTER_ID);
+    if (ch) {
+      ch.setName(`${ch.name.split(":")[0]}: ${classModel.getPoints()}`)
+        .then((newCh) => {
+          console.log(`\tUpdated user counter success! (${newCh.name})`);
+          this.roseCounterRecentlyUpdated = true;
+          setTimeout(() => {
+            this.roseCounterRecentlyUpdated = false;
+          }, 5 * 60 * 1000);
+        })
+        .catch((err) => console.log(`\tError updating user counter: ${err}`));
+    }
+  }
+
+  async updateAllPointsCounter() {
+    await this.updateCherryPointsCounter();
+    await this.updateSunflowerPointsCounter();
+    await this.updateRosePointsCounter();
   }
 }
 
