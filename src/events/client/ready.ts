@@ -10,7 +10,9 @@ import { Class } from "../../handlers/dbModels";
 
 module.exports = (client: SDBClient) => {
   if (client.user) {
-    log("Client is ready! Setting activity...");
+    log(
+      `Client is ready (v${process.env.npm_package_version})! Setting activity...`
+    );
     client.user?.setActivity(
       `${ACTIVITY} - v${process.env.npm_package_version}`,
       { type: "PLAYING" }
