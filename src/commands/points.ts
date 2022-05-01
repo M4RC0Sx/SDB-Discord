@@ -102,6 +102,7 @@ export = {
       return;
     }
 
+    // Everyone can execute list
     if (subCommand === "list") {
       const cherryModel = await Class.findOne({
         where: { name: "CEREZAS" }
@@ -142,6 +143,7 @@ export = {
       return;
     }
 
+    // Only staffs can manage points
     if (!isAdmin(sender)) {
       await interaction.reply({
         content: "¡No tienes permisos para usar este comando!",
